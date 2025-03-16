@@ -2,6 +2,7 @@ import { Button, Grid2, Stack, styled, TextField } from "@mui/material";
 import { FC, useState } from "react";
 import TagSelect from "./TagSelect";
 import { NoteData } from "../../types";
+import { Link } from "react-router-dom";
 
 const Lable = styled("label")`
   font-size: 1rem;
@@ -54,6 +55,8 @@ const Form: FC<Props> = ({ handleSubmit }) => {
 
       <Stack direction={"row"} spacing={5} justifyContent={"end"}>
         <Button
+          component={Link}
+          to=".."
           type="button"
           color="secondary"
           variant="contained"
