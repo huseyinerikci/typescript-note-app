@@ -12,7 +12,7 @@ interface Props {
 const TagSelect: FC<Props> = ({ selectedTags, setSelectedTags }) => {
   const { tags } = useSelector((state: RootState) => state.tags);
   const dispatch = useDispatch();
-  console.log(tags);
+
   return (
     <Autocomplete
       multiple

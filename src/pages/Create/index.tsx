@@ -4,7 +4,7 @@ import PageContainer from "../../styled/PageContainer";
 import Form from "../../components/form";
 import { NoteData } from "../../types";
 import { useDispatch } from "react-redux";
-import { addNote } from "../../redux/slices/noteSlice";
+import { addNote } from "../../redux/slices/notesSlice";
 import { useNavigate } from "react-router-dom";
 
 const Create: FC = () => {

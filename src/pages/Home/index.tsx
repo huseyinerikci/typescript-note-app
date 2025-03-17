@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Filter from "../../components/filter";
 import NoteCard from "../../components/card/NoteCard";
 const Home: FC = () => {
-  const notes = useSelector((state: RootState) => state.notes);
+  const { notes } = useSelector((store: RootState) => store.notes);
   const [title, setTitle] = useState<string>("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 

@@ -1,7 +1,7 @@
 import { Button, Grid2, Stack, styled, TextField } from "@mui/material";
 import { FC, useState } from "react";
 import TagSelect from "./TagSelect";
-import { NoteData } from "../../types";
+import { Note, NoteData } from "../../types";
 import { Link } from "react-router-dom";
 
 const Lable = styled("label")`
@@ -10,12 +10,13 @@ const Lable = styled("label")`
 
 interface Props {
   handleSubmit: (data: NoteData) => void;
+  note?: Note;
 }
 
-const Form: FC<Props> = ({ handleSubmit }) => {
-  const [title, setTitle] = useState<string>("");
-  const [markdown, setMarkdown] = useState<string>("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+const Form: FC<Props> = ({ handleSubmit, note }) => {
+  const [title, setTitle] = useState<string>(note?.title || "");
+  const [markdown, setMarkdown] = useState<string>(note?.markdown || "");
+  const [selectedTags, setSelectedTags] = useState<string[]>(note?.tags || []);
 
   const handleForm = () => {
     if (!title || !markdown || !selectedTags.length) {
@@ -30,6 +31,7 @@ const Form: FC<Props> = ({ handleSubmit }) => {
           <TextField
             label="Başlık"
             variant="outlined"
+            value={title}
             fullWidth
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -49,6 +51,7 @@ const Form: FC<Props> = ({ handleSubmit }) => {
           minRows={15}
           maxRows={50}
           fullWidth
+          value={markdown}
           onChange={(e) => setMarkdown(e.target.value)}
         />
       </Stack>
@@ -56,7 +59,7 @@ const Form: FC<Props> = ({ handleSubmit }) => {
       <Stack direction={"row"} spacing={5} justifyContent={"end"}>
         <Button
           component={Link}
-          to=".."
+          to={note ? `/note/${note.id}` : ".."}
           type="button"
           color="secondary"
           variant="contained"
